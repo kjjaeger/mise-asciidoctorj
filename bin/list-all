@@ -10,4 +10,4 @@ doc_fail() {
 [ -x "$(which curl)" ] || doc_fail "Missing the following dependency: curl"
 
 
-curl -s https://repo1.maven.org/maven2/org/asciidoctor/asciidoctorj/ | awk 'match($0, /<a href="[^.][^\/]+\/"/) { print substr( $0, RSTART+9, RLENGTH-11)}' | awk '{if (NR > 2) {printf "%s ", $0}}'
+curl -s https://repo1.maven.org/maven2/org/asciidoctor/asciidoctorj/ | awk 'match($0, /<a href="[^.][^\/]+\/"/) { print substr( $0, RSTART+9, RLENGTH-11)}' | awk '{if (NR > 2 && $0 ~ /^[0-9]/) {printf "%s ", $0}}'
